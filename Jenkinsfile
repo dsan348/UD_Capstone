@@ -5,6 +5,8 @@ pipeline {
              steps {
                  sh 'echo "Linting HTML files"'
                  sh 'tidy -q -e *.html'
+                 sh 'echo "linting Dockerfile"'
+                 sh 'hadolint Dockerfile'
              }
          }
          //stage ('Upload to AWS') {
