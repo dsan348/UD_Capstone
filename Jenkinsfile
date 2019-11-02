@@ -5,16 +5,14 @@ pipeline {
              steps {
                  sh 'echo "Linting HTML files"'
                  sh 'tidy -q -e *.html'
-                 sh 'echo "linting Dockerfile"'
-                 sh '/home/linuxbrew/.linuxbrew/bin/hadolint Dockerfile'
              }
          }
-         //stage ('Upload to AWS') {
-             //steps {
-                  //withAWS(credentials: 'aws-static', region: 'us-west-2') {
-                      //s3Upload bucket: 'proj4', file: 'index.html'
-                  //}          
-            //}
-        //}
+         stage ('Lint Dockerfile') {
+             steps {
+                 sh 'echo "linting Dockerfile"'
+                 sh '/home/linuxbrew/.linuxbrew/bin/hadolint Dockerfile'
+                  }          
+            }
+        }
     }
 }
