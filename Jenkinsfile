@@ -13,7 +13,7 @@ pipeline {
                  sh 'pwd'
                  sh '/home/linuxbrew/.linuxbrew/bin/hadolint Dockerfile'
                  sh 'rm -rf /home/ubuntu/UD_Capstone/'
-                 sh 'git clone https://github.com/dsan348/UD_Capstone /home/ubuntu/'
+                 sh 'git clone https://github.com/dsan348/UD_Capstone /home/ubuntu/capstone'
                   }          
             }
         }
