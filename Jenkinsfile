@@ -12,9 +12,8 @@ pipeline {
                  sh 'echo "linting Dockerfile"'
                  sh 'pwd'
                  sh '/home/linuxbrew/.linuxbrew/bin/hadolint Dockerfile'
-                 sh 'sudo rm -rf /home/ubuntu/capstone/'
-                 sh 'sudo mkdir /home/ubuntu/capstone'
-                 sh 'sudo git clone https://github.com/dsan348/UD_Capstone /home/ubuntu/capstone'
+                 sh 'git clone https://github.com/dsan348/UD_Capstone'
+                 sh 'ls -a'
                   }          
             }
         }
