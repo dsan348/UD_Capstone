@@ -12,7 +12,7 @@ pipeline {
                  sh 'echo "linting Dockerfile"'
                  sh 'pwd'
                  sh '/home/linuxbrew/.linuxbrew/bin/hadolint Dockerfile'
-                 sh 'git clone https://github.com/dsan348/UD_Capstone'
+                 sh 'rm -rf UD_Capstone/'
                  sh 'ls -a'
                   }          
             }
