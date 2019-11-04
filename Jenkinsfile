@@ -19,12 +19,12 @@ pipeline {
           
           stage('Build Docker Image & Push To Dockerhub') {
 			steps {
-				sshagent(['Docker_Swarm']){
+				sshagent(['Bastion']){
 					sh '''
-						ssh -tt docker@ec2-35-163-227-4.us-west-2.compute.amazonaws.com
+						ssh -tt ubuntu@ec2-34-219-74-135.us-west-2.compute.amazonaws.com
+                        pwd
                         ls -al
-                       
-					'''
+                       '''
 				}
 			}
 		}
