@@ -12,7 +12,7 @@ pipeline {
              steps {
                  sh 'echo "linting Dockerfile"'
                  sh 'pwd'
-                 sh 'hadolint Dockerfile'
+                 sh '/home/linuxbrew/.linuxbrew/bin/hadolint Dockerfile'
                  sh 'ls -a'
                   }          
             }
