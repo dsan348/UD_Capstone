@@ -19,12 +19,7 @@ pipeline {
           
           stage('Build Docker Image & Push To Dockerhub') {
 			steps {
-				withCredentials([sshUserPrivateKey(credentialsId: 'Docker_Swarm', keyFileVariable: 'DKRKFV', passphraseVariable: 'DKPF', usernameVariable: 'DKUSR')]){
-					sh '''
-						ssh -tti "DKPF" $DKUSR@ec2-35-163-227-4.us-west-2.compute.amazonaws.com 
-                        exec pwd
-                        exec ls -al
-                       '''
+				sshPublisher(publishers: [sshPublisherDesc(configName: 'DockerCluster', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'pwd, ls', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
 				}
 			}
 		}
