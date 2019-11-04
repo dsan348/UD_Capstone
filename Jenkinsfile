@@ -21,8 +21,8 @@ pipeline {
 			steps {
 				withCredentials([sshUserPrivateKey(credentialsId: 'Docker_Swarm', keyFileVariable: 'DKRKFV', passphraseVariable: '', usernameVariable: 'DKR')]){
 					sh '''
-						ssh -tt -i '$DKRKFV' $DKR@ec2-35-163-227-4.us-west-2.compute.amazonaws.com
-                        docker images
+						
+                       /var/lib/jenkins/jenktmp/srvenv.sh 
 					'''
 				}
 			}
