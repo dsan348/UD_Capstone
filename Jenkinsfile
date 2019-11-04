@@ -20,7 +20,7 @@ pipeline {
           stage ('Build Docker Image & Push To Dockerhub') {
 			steps {
                 sshPublisher(publishers: [sshPublisherDesc(configName: 'DockerCluster', transfers:\
-                 [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'docker version', execCommand: 'docker ps -a', execTimeout: 120000,\
+                 [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'docker version', execTimeout: 120000,\
                   flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+'\
                   , remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: ''),\
                    sshTransfer(cleanRemote: false, excludes: '', execCommand: 'docker images', execTimeout: 120000,\
