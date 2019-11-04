@@ -19,10 +19,11 @@ pipeline {
           
           stage('Build Docker Image & Push To Dockerhub') {
 			steps {
-				withCredentials([sshUserPrivateKey(credentialsId: 'Docker_Swarm', keyFileVariable: 'DKRKFV', passphraseVariable: '', usernameVariable: 'DKR')]){
+				sshagent(['Docker_Swarm']){
 					sh '''
-						
-                       /var/lib/jenkins/jenktmp/srvenv.sh 
+						ssh docker@ec2-35-163-227-4.us-west-2.compute.amazonaws.com
+                        ls -al
+                       
 					'''
 				}
 			}
