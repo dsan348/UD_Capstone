@@ -21,7 +21,7 @@ pipeline {
 			steps {
 				sshagent(['Docker_Swarm']){
 					sh '''
-						ssh docker@ec2-35-163-227-4.us-west-2.compute.amazonaws.com
+						ssh -tt docker@ec2-35-163-227-4.us-west-2.compute.amazonaws.com
                         ls -al
                        
 					'''
