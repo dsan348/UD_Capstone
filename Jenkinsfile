@@ -33,10 +33,10 @@ pipeline {
             stage('EKS Publish App') {
                         steps {
                             sshPublisher(publishers: [sshPublisherDesc(configName: 'K8s_Cluster', transfers:\
-                 [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'kubectl get svc', execTimeout: 120000,\
+                 [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'kubectl create deployment capstone-app --image=denisan348/revolveimg:blue', execTimeout: 120000,\
                   flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+'\
                   , remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: ''),\
-                   sshTransfer(cleanRemote: false, excludes: '', execCommand: 'kubectl get nodes', execTimeout: 120000,\
+                   sshTransfer(cleanRemote: false, excludes: '', execCommand: 'kubectl expose deployment capstone-app --type=LoadBalancer --port=8080 --target-port=80', execTimeout: 120000,\
                     flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+',\
                      remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')],\
                       usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
