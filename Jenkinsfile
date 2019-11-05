@@ -21,7 +21,7 @@ pipeline {
           stage ('Build Docker Image & Push To Dockerhub') {
 			steps {
                sshPublisher(publishers: [sshPublisherDesc(configName: 'DockerCluster', transfers: [sshTransfer(cleanRemote: false, excludes: '',\
-                execCommand: 'docker build -t denisan348/revolveimg:$d .', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false,\
+                execCommand: 'docker build -t denisan348/revolveimg:blue .', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false,\
                  patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'Dockerfile, index.html'),\
                   sshTransfer(cleanRemote: false, excludes: '', execCommand: 'docker push denisan348/revolveimg', execTimeout: 120000, flatten: false,\
                    makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '',\
