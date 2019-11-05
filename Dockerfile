@@ -1,4 +1,4 @@
-## Base image to use
+## Base image to use.
 # hadolint ignore=DL3006
 FROM nginx
 
