@@ -19,7 +19,14 @@ pipeline {
           
           stage ('Build Docker Image & Push To Dockerhub') {
 			steps {
-                sshPublisher(publishers: [sshPublisherDesc(configName: 'DockerCluster', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ls -a', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/capstone', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'Dockerfile, index.html')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])}
+               sshPublisher(publishers: [sshPublisherDesc(configName: 'DockerCluster', transfers:\
+                 [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'cd capstone', execTimeout: 120000,\
+                  flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+'\
+                  , remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: ''),\
+                   sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ls -al', execTimeout: 120000,\
+                    flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+',\
+                     remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')],\
+                      usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])}
 			}
 		}
 
