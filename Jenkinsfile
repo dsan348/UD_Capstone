@@ -26,18 +26,20 @@ pipeline {
                    makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '',\
                     sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])}
 			}
-		}
+		
 
-            //stage('EKS Publish App') {
-                        //steps {
-                            //withCredentials([sshUserPrivateKey(credentialsId: 'AWS_K8s_Cluster', keyFileVariable: 'K8KFV', passphraseVariable: '', usernameVariable: 'K8SUSR')]){
-                                //sh '''
-                                //
-                                //    kubectl get svc
-                              //  '''
-                            //}
-                        //}
-                    //}
+            stage('EKS Publish App') {
+                        steps {
+                            sshPublisher(publishers: [sshPublisherDesc(configName: 'K8s_Cluster', transfers:\
+                 [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'kubectl get svc', execTimeout: 120000,\
+                  flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+'\
+                  , remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: ''),\
+                   sshTransfer(cleanRemote: false, excludes: '', execCommand: 'kubectl get nodes', execTimeout: 120000,\
+                    flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+',\
+                     remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')],\
+                      usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                        }
+                    }
 
 
         }
