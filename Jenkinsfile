@@ -14,7 +14,7 @@ pipeline {
                  sh 'pwd'
                  sh '/home/linuxbrew/.linuxbrew/bin/hadolint Dockerfile'
                  sh 'ls -a'
-                 sh 'd=`date +%y%m%d%H%M%S`'
+                 
                   }          
             }
           
